@@ -13,7 +13,6 @@ draw_to_these_axes = [] ;
 applySummation = 1 ;
 linTypeSum = 'r' ;
 linTypeSub = 'k' ;
-linTypeWid = 2;
 decompose = 1 ;
 returnBounds = 0 ;
 bounds = [] ;
@@ -34,12 +33,9 @@ for i=1:2:nargs
         case 'enumComps', enumComps = args{i+1} ;
         case 'applySummation', applySummation = args{i+1} ;
         case 'draw_to_these_axes', draw_to_these_axes = args{i+1} ;
-        case 'edgewidth', linTypeWid = args{i+1};
     end
 end
  
-linTypeSub = linTypeSum;
-% linTypeSum(1) = 1;
 
 if isempty(draw_to_these_axes)
    draw_to_these_axes = gca ; 
@@ -72,20 +68,18 @@ if decompose == 1
         if i == 2 
             set(draw_to_these_axes,'NextPlot','add') ;
         end
-        cov = cell(1);
-        cov{1} = [pdf.Cov{i}];
-        showPdf( bounds, 1000, pdf.Mu(:,i), cov, pdf.w(i), linTypeSub, linTypeWid, draw_to_these_axes) ;
+        showPdf( bounds, 1000, pdf.Mu(:,i), pdf.Cov{i}, pdf.w(i), linTypeSub, 2, draw_to_these_axes) ;
         if ( enumComps == 1 )
            text(pdf.Mu(:,i), 5, num2str(i)) ;%, 'FontSize',16
         end
     end
     if applySummation == 1
-        showPdf( bounds, 1000, pdf.Mu, pdf.Cov, pdf.w, linTypeSum,linTypeWid, draw_to_these_axes  ) ;
+        showPdf( bounds, 1000, pdf.Mu, cell2mat(pdf.Cov)', pdf.w, linTypeSum,2, draw_to_these_axes  ) ;
     end    
 %     if ( h == 0 ) hold off ; end
     set(draw_to_these_axes, 'NextPlot', h) ;
 else
-    showPdf( bounds, 1000, pdf.Mu, pdf.Cov, pdf.w, linTypeSum, linTypeWid, draw_to_these_axes  ) ;
+    showPdf( bounds, 1000, pdf.Mu, cell2mat(pdf.Cov)', pdf.w, linTypeSum, 2, draw_to_these_axes  ) ;
 end
  
 % ca = axis ;

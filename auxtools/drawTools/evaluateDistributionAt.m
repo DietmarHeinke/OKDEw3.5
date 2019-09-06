@@ -8,8 +8,6 @@ function pdf = evaluateDistributionAt( mu, weights, covariances, locations )
 model.w =weights ;
 model.Mu = mu ;
 model.Cov = {} ;
-covariances=cell2mat(covariances);
-covariances=covariances';
 for i = 1 : length(weights)
     model.Cov = horzcat(model.Cov , diag(covariances(i,:) )) ;
 end

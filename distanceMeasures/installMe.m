@@ -12,19 +12,19 @@ end
 
 % install current path
 newPath = pwd ;
-rmpath(newPath) ; addpath(newPath) ;
+addpath(newPath) ;
 
 newPath = sprintf( '%s/uHellinger', pwd ) ;
-rmpath(newPath) ; addpath(newPath) ;
+addpath(newPath) ;
 
 newPath = sprintf( '%s/MDL', pwd ) ;
-rmpath(newPath) ; addpath(newPath) ;
+addpath(newPath) ;
 
 newPath = sprintf( '%s/uEntropy', pwd ) ;
-rmpath(newPath) ; addpath(newPath) ;
+addpath(newPath) ;
 
 newPath = sprintf( '%s/l2', pwd ) ;
-rmpath(newPath) ; addpath(newPath) ;
+addpath(newPath) ;
 
 % install debug if required
 installDebug( debug ) ;

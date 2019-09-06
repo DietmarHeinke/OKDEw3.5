@@ -11,7 +11,6 @@ kde = [] ;
 data = [] ;
 showdata = [] ;
 tabulated = 0 ;
-edgeWidth = 2;
 % process arguments
 args = varargin;
 nargs = length(args);
@@ -28,7 +27,6 @@ for i = 1:2:nargs
         case 'useEdgeColorBlack', useEdgeColorBlack = args{i+1}   ;         
         case 'draw_to_these_axes', draw_to_these_axes = args{i+1}   ;   
         case 'decompose', decompose = args{i+1}   ;
-        case 'edgewidth', edgeWidth = args{i+1};
     end
 end
 
@@ -44,13 +42,11 @@ end
 if showTabulated ~= 1
     drawDistributionGMM( 'pdf',kde.pdf, 'color', color, 'decompose', decompose, ...
            'useAlphaWeights', useAlphaWeights, 'deactivateFaceColor', deactivateFaceColor, ...
-           'useEdgeColorBlack', useEdgeColorBlack, 'draw_to_these_axes', draw_to_these_axes, ...
-           'edgewidth',edgeWidth) ;            
+           'useEdgeColorBlack', useEdgeColorBlack, 'draw_to_these_axes', draw_to_these_axes) ;            
 else
     %hold off ; plot(kde.pdf.Mu(1,1),kde.pdf.Mu(2,1),'*'); 
     hold off ;
-    drawDistributionGMM( 'pdf',kde.pdf, 'color', [1 1 1], 'draw_to_these_axes', draw_to_these_axes, ...
-        'edgewidth',edgeWidth) ;
+    drawDistributionGMM( 'pdf',kde.pdf, 'color', [1 1 1], 'draw_to_these_axes', draw_to_these_axes ) ;
     boundsIm = axis ; hold off ;    
 %     visualizePdf2d2( kde.pdf, boundsIm, [], grans, draw_to_these_axes ) ;  
     [A, ~, X_tck, Y_tck] = tabulate2D_gmm( kde.pdf, boundsIm, grans ) ; 

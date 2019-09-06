@@ -1,6 +1,13 @@
-Maggot v3.4
+﻿Maggot v3.5
 Author: Matej Kristan, Faculty of Computer and Information Science, University of Ljubljana (2013).
 Email: matej.kristan@fri.uni-lj.si
+
+% Updates since v3.4. -------------
+6.12.2016:
+In "executeSplitComponents.m", line 53, there was a bug discovered by Azamat Berdyshev. In particular, the line
+"if ( abs(det(pdfX.Cov{1})) < TolSing )" should have been "if ( abs(det(pdfX.Cov{j})) < TolSing ) "
+% ---------------------------------
+
 
 This is a reference implementation of the:
 	* online Kernel Density Estimator (oKDE) [1]

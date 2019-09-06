@@ -50,7 +50,8 @@ for i = 1 : length(pdf.w)
         % now generate for each new subcomponent its own sublayer
         for j = 1 : length(pdfX.w) 
             % if resulting points are singletons
-            if ( abs(det(pdfX.Cov{1})) < TolSing ) 
+            % if ( abs(det(pdfX.Cov{1})) < TolSing ) !! bug discovered by Azamat Berdyshev on 6.12.2016
+            if ( abs(det(pdfX.Cov{j})) < TolSing )
                 q.Mu = pdfX.Mu(:,j) ;
                 q.Cov = pdfX.Cov(j) ;
                 q.w = 1 ;                               

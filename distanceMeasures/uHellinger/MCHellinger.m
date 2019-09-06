@@ -12,7 +12,7 @@ H = sqrt(2*(1-Hd))/sqrt(2) ;
 function Hd = MCH_divergence( f1, f2, N )
 
 % generate samples from f1
-X = sampleMixtureOfGaussians( f1.Mu, f1.w, f1.Cov, N ) ;
+X = sampleMixtureOfGaussians( f1.mu, f1.weights, f1.covariances, N ) ;
 % evaluate function
 Y = transformPoints( X, f1, f2 ) ;
 % approximate integral I = int( f1*sqrt(f2/f1) dx )

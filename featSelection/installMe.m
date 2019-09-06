@@ -20,7 +20,7 @@ dirNames = {} ;
 
 % install local path
 newPath = [pwd] ;
-rmpath(newPath) ; addpath(newPath) ;
+addpath(newPath) ;
 
 for i = 1 : length(dirNames)
     installPathsFrom( dirNames{i}, varargin ) ;

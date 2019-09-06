@@ -59,9 +59,9 @@ end
  
 if ( d == 1 )
     if ( ~isempty(color) )
-        showDecomposedPdf( pdf, 'linTypeSum', color, 'decompose', decompose, 'draw_to_these_axes', draw_to_these_axes, 'edgewidth', edgewidth) ;
+        showDecomposedPdf( pdf, 'linTypeSum', color, 'decompose', decompose, 'draw_to_these_axes', draw_to_these_axes ) ;
     else
-        showDecomposedPdf( pdf, 'decompose', decompose, 'draw_to_these_axes', draw_to_these_axes, 'edgewidth', edgewidth) ;
+        showDecomposedPdf( pdf, 'decompose', decompose, 'draw_to_these_axes', draw_to_these_axes ) ;
     end
 
     return ;

@@ -12,7 +12,7 @@ function demo_oKDE()
 pth = './supp/' ; rmpath(pth) ; addpath(pth) ;
 installEntireMaggot3() ; 
  
-demo_to_show = 8 ; % 1 2 3 4 5 6 7 8 9
+demo_to_show = 2 ; % 1 2 3 4 5 6 7 8 9
 
 switch(demo_to_show)
     case 1
@@ -462,10 +462,10 @@ function demo3DestimationPostProcessing()
 % resulting 2D model.
     
 % to get a better feel of the smoothing, try running this with Dth = 0.02 ; and Dth = 0.05 ;    
-close all ; pause(0.001) ;
+close all ; 
 
 % generate some datapoints 
-N = 10000 ;
+N = 1000 ;
 Dth = 0.02 ; % allowed Hellinger distance error in compression
 apply_EM_updates = 1 ; % [ 1 0 ] whether to use the EM updates (a bit faster)
  
@@ -479,11 +479,15 @@ pdf_gen.w = ones(1,K)/K ;
 % sample data from the model
 dat = sampleGaussianMixture( pdf_gen, N ) ; 
 
+figure(1) ; clf ;
+
 % initialize
 kde = executeOperatorIKDE( [], 'input_data', dat(:,1:5),'add_input' );
 kde = executeOperatorIKDE( kde, 'compressionClusterThresh', Dth, 'apply_EM_updates', apply_EM_updates ) ;
 for i = 4 : size(dat,2) 
     kde = executeOperatorIKDE( kde, 'input_data', dat(:,i), 'add_input'  ) ; 
+    msg = sprintf('%d datapoints of %d added.', i, N) ;
+    title(msg) ; drawnow ;
 end
 
 % post process by further compression

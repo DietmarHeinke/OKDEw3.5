@@ -102,6 +102,7 @@ pdf_f1 = pdf_f1.*(pdf_f1 > 0) ;
 pdf_f2 = pdf_f2.*(pdf_f2 > 0) ;
 
 pdf_f0 = evaluatePointsUnderPdf( f0, X ) ;
+ 
 
 g = (sqrt(pdf_f1)- sqrt(pdf_f2)).^2 ;
 H = sqrt(abs(sum(W.*g./pdf_f0)/2)) ; 

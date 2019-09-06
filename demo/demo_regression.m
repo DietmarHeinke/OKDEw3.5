@@ -8,9 +8,10 @@ installEntireMaggot3() ;
 apply_EM_updates = 1 ;
 make_spherical = 1 ; % should we make a spherical kernel in regression step
 modd = 20 ;
-Dth = 0.02 ; % allowed Hellinger distance error in compression
+Dth = 0.01 ; % allowed Hellinger distance error in compression
 % generate data
-N_points = 1000 ;
+N_points = 10000 ;
+N_init = 100 ;
 w = 20 ;
 sig = 0.1 ;
 bounds_x = [0,1] ;
@@ -22,10 +23,10 @@ y_pts = sin(x_pts*w).*x_pts + randn(1, length(x_pts))*sig ;
 dat = [ x_pts ; y_pts ] ;
 
 % initialize kde
-kde = executeOperatorIKDE( [], 'input_data', dat(:,1:3),'add_input' );
+kde = executeOperatorIKDE( [], 'input_data', dat(:,1:N_init),'add_input' );
 kde = executeOperatorIKDE( kde, 'compressionClusterThresh', Dth, 'apply_EM_updates', apply_EM_updates ) ;
 
-for i = 4 : size(dat,2) 
+for i = N_init+1 : size(dat,2) 
     tic
     kde = executeOperatorIKDE( kde, 'input_data', dat(:,i), 'add_input'  ) ;
     toc

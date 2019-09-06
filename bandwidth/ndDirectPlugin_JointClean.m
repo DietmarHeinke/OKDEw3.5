@@ -18,7 +18,7 @@ G = (Cov_smp *(4/((d+2)*N_eff))^(2/(d+4))) ;
 alpha_scale = 1 ;
 F = Cov_smp * alpha_scale; % for numerical stability. it could have been: F = Cov_smp ;
 % could also constrain to say that F = identity!
-applyapproximation = 0 ;
+applyapproximation = 1 ;
 
 if applyapproximation == 1
     % uses approximation !

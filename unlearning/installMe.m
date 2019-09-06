@@ -17,7 +17,7 @@ end
 
 % install current path
 newPath = pwd ;
-rmpath(newPath) ; addpath(newPath) ;
+addpath(newPath) ;
  
 % install debug if required
 installDebug( debug ) ;

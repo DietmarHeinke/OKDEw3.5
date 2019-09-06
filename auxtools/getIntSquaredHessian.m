@@ -25,13 +25,10 @@ I = 0 ;
 delta_F = sum(sum(abs(F-eye(size(F))))) ;
 if delta_F < 1e-3
     % generate a summation over the nonsymmetric matrix
-    ci = zeros(1,N);
-    parfor l1 = 1 : N
-%     for l1 = 1 : N
+    for l1 = 1 : N
         S1 = Cov{l1}  + G ;
         Mu1 = Mu(:,l1) ;
         w1 = w(l1) ;
-        
         for l2 = l1 : N
             S2 = Cov{l2};
             Mu2 = Mu(:,l2) ;
@@ -60,11 +57,9 @@ if delta_F < 1e-3
             else
                 eta = 2 ;
             end
-            ci(l1) = ci(l1) + f_t*c*w2*w1*eta;
-%             I = I + f_t*c*w2*w1*eta ;
+            I = I + f_t*c*w2*w1*eta ;
         end
     end
-    I = sum(ci);
 else
     % generate a summation over the nonsymmetric matrix
     for l1 = 1 : N
